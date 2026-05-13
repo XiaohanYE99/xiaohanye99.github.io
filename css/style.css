@@ -141,61 +141,19 @@ a:hover {
   margin-top: 15px;
 }
 
-/* Link Buttons - Highlight styled links */
-a[href] {
+/* Publication links - plain text style */
+.pub-wrapper .link a {
   color: var(--cardinal);
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-a[href]:hover {
-  background-color: var(--very-light-cardinal);
   text-decoration: none;
 }
 
-/* Non-linked text stays default */
-.link span:not(.venue),
-.link {
-  color: var(--text);
-  font-weight: normal;
-}
-
-/* Publication links as buttons */
-.pub-wrapper .link a[href] {
-  display: inline-block;
-  padding: 4px 10px;
-  margin: 2px 4px 2px 0;
-  background: white;
-  border: 1px solid var(--cardinal);
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.pub-wrapper .link a[href]:hover {
-  background: var(--cardinal);
-  color: white;
+.pub-wrapper .link a:hover {
+  text-decoration: underline;
 }
 
 @media (prefers-color-scheme: dark) {
-  a[href] {
+  .pub-wrapper .link a {
     color: var(--light-cardinal);
-  }
-  
-  a[href]:hover {
-    background-color: var(--dark-cardinal);
-  }
-  
-  .pub-wrapper .link a[href] {
-    background: transparent;
-    border-color: var(--light-cardinal);
-  }
-  
-  .pub-wrapper .link a[href]:hover {
-    background: var(--light-cardinal);
-    color: var(--dark-cardinal);
   }
 }
 
@@ -205,14 +163,29 @@ a[href]:hover {
   color: var(--dark-gray);
 }
 
-.representative {
-  background-color: var(--very-light-cardinal);
-  border-radius: 2px;
+/* Non-first author - white background */
+.pub-wrapper .section-item {
+  background: white;
+  border-left: 2px solid var(--light-gray);
+}
+
+/* First author highlight - very light pink background */
+.pub-wrapper .section-item.first-author {
+  background: linear-gradient(135deg, rgba(255, 248, 250, 1) 0%, rgba(255, 240, 245, 1) 100%);
+  border-left: 3px solid var(--cardinal);
 }
 
 @media (prefers-color-scheme: dark) {
-  .representative {
-    background-color: var(--dark-cardinal);
+  /* Non-first author - dark background */
+  .pub-wrapper .section-item {
+    background: var(--night-background);
+    border-left: 2px solid var(--dark-gray);
+  }
+  
+  /* First author - darker pink/red background */
+  .pub-wrapper .section-item.first-author {
+    background: linear-gradient(135deg, rgba(80, 0, 20, 1) 0%, rgba(100, 0, 25, 1) 100%);
+    border-left: 3px solid var(--light-cardinal);
   }
 }
 
@@ -342,8 +315,8 @@ a[href]:hover {
  *------------------*/
 
 .pub-wrapper .section-item {
-  margin-top: 10px;
-  padding: 12px 14px;
+  margin-top: 14px;
+  padding: 14px 16px;
   border: 1px solid rgba(194, 192, 191, 0.35);
   border-radius: 12px;
   background: var(--card-background);
@@ -391,6 +364,22 @@ a[href]:hover {
   width: 100%;
   border-radius: 12px;
   box-shadow: 0 8px 22px rgba(45, 45, 45, 0.08);
+}
+
+/* Specific articles image heights */
+.pub-wrapper .section-item.lri-article .figure img,
+.pub-wrapper .section-item.diffma-article .figure img,
+.pub-wrapper .section-item.difffr-article .figure img {
+  max-height: 140px;
+  max-width: 200px;
+  object-fit: contain;
+}
+
+/* FluidRL - slightly smaller */
+.pub-wrapper .section-item.fluidrl-article .figure img {
+  max-height: 120px;
+  max-width: 180px;
+  object-fit: contain;
 }
 
 @media (max-width: 767.98px) {
