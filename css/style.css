@@ -7,6 +7,9 @@
   --light-gray: #c2c0bf;
   --dark-gray: #8a8b8c;
   --very-dark-gray: #2d2d2d;
+  --soft-background: #fbfaf8;
+  --card-background: rgba(255, 255, 255, 0.86);
+  --card-shadow: 0 18px 55px rgba(45, 45, 45, 0.08);
 
   --text: black;
   --background: white;
@@ -14,7 +17,7 @@
   --night-text: white;
   --night-background: #121414;
 
-  --page-width: 768px;
+  --page-width: 1000px;
 
   --font-size: 14px;
   --mobile-font-size: 16px;
@@ -53,7 +56,9 @@ body {
   line-height: var(--line-height);
   color: var(--text);
   font-weight: normal;
-  background: var(--background);
+  background:
+    radial-gradient(circle at top left, rgba(117, 0, 20, 0.08), transparent 28rem),
+    linear-gradient(180deg, var(--soft-background), var(--background) 24rem);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -112,27 +117,86 @@ a:hover {
 }
 
 .section-item {
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 .section-head {
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 5px;
 }
 
 .section-title {
-  font-weight: normal;
+  font-weight: bold;
   font-size: var(--section-title-font-size);
   line-height: var(--line-height);
   display: inline-block;
 }
 
 .col-wrapper {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .sec-wrapper {
-  margin-top: 30px;
+  margin-top: 15px;
+}
+
+/* Link Buttons - Highlight styled links */
+a[href] {
+  color: var(--cardinal);
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+a[href]:hover {
+  background-color: var(--very-light-cardinal);
+  text-decoration: none;
+}
+
+/* Non-linked text stays default */
+.link span:not(.venue),
+.link {
+  color: var(--text);
+  font-weight: normal;
+}
+
+/* Publication links as buttons */
+.pub-wrapper .link a[href] {
+  display: inline-block;
+  padding: 4px 10px;
+  margin: 2px 4px 2px 0;
+  background: white;
+  border: 1px solid var(--cardinal);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.pub-wrapper .link a[href]:hover {
+  background: var(--cardinal);
+  color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  a[href] {
+    color: var(--light-cardinal);
+  }
+  
+  a[href]:hover {
+    background-color: var(--dark-cardinal);
+  }
+  
+  .pub-wrapper .link a[href] {
+    background: transparent;
+    border-color: var(--light-cardinal);
+  }
+  
+  .pub-wrapper .link a[href]:hover {
+    background: var(--light-cardinal);
+    color: var(--dark-cardinal);
+  }
 }
 
 .section-sub {
@@ -181,23 +245,31 @@ a:hover {
 
 .home-wrapper .picture img {
   width: 100%;
-  max-width: 200px;
-  margin-right: 40px;
+  max-width: 160px;
+  margin-right: 25px;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
 }
 
 .home-wrapper .description {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .home-wrapper .description .name {
-  font-size: var(--name-font-size);
-  margin-bottom: 20px;
+  font-size: 28px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  font-weight: bold;
 }
 
 .home-wrapper .social {
-  margin-top: 10px;
+  margin-top: 8px;
   margin-bottom: 0;
   padding: 0;
+}
+
+.home-wrapper .social a[href] {
+  margin-right: 8px;
 }
 
 /*------------------
@@ -270,9 +342,18 @@ a:hover {
  *------------------*/
 
 .pub-wrapper .section-item {
-  margin-top: 15px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(194, 192, 191, 0.35);
+  border-radius: 12px;
+  background: var(--card-background);
+  box-shadow: 0 6px 20px rgba(45, 45, 45, 0.04);
+  transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.pub-wrapper .section-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow);
 }
 
 .pub-wrapper a {
@@ -308,6 +389,8 @@ a:hover {
 .pub-wrapper .figure img {
   max-width: 240px;
   width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(45, 45, 45, 0.08);
 }
 
 @media (max-width: 767.98px) {
