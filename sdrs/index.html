@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SDRS: Shape-Differentiable Robot Simulator</title>
+  <meta name="description" content="Project page for SDRS: Shape-Differentiable Robot Simulator.">
+  <meta name="author" content="Xiaohan Ye">
+  <meta property="og:title" content="SDRS: Shape-Differentiable Robot Simulator">
+  <meta property="og:description" content="A robot simulator differentiable with respect to state, control, and robot shape under large geometric and topological changes.">
+  <meta property="og:image" content="https://xiaohanye99.github.io/sdrs/assets/img/tro/fig2_pipeline.jpg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav"><div class="container nav-inner"><a class="brand" href="../">Xiaohan Ye</a><div class="nav-links"><a href="#abstract">Abstract</a><a href="#video">Video</a><a href="#results">Results</a><a href="#citation">Citation</a></div></div></nav>
+  
+  <header class="hero container">
+    <div class="eyebrow">IEEE Transactions on Robotics, 2025</div>
+    <h1>SDRS: Shape-Differentiable Robot Simulator</h1>
+    <div class="authors">
+      <a href="../">Xiaohan Ye</a><sup>1</sup>, 
+      <a href="https://gaoxifeng.github.io/">Xifeng Gao</a><sup>2</sup>, 
+      <a href="https://kuiwuchn.github.io/">Kui Wu</a><sup>2</sup>, 
+      <a href="https://dyingbrain.github.io/">Zherong Pan</a><sup>2,†</sup>, and 
+      <a href="https://i.cs.hku.hk/~taku/">Taku Komura</a><sup>1,†</sup>
+    </div>
+    <div class="affiliations"><sup>1</sup>The University of Hong Kong &nbsp;&nbsp; <sup>2</sup>LightSpeed Studios, Tencent &nbsp;&nbsp; <sup>†</sup>Corresponding authors</div>
+    <div class="actions">
+      <a class="button primary" href="https://ieeexplore.ieee.org/document/11266917">Paper (TRO)</a>
+      <a class="button" href="https://arxiv.org/abs/2412.19127">arXiv</a>
+      <a class="button" href="https://bitbucket.org/runningblade/libdifferentiable/src/ConvexHullPBAD/">Code</a>
+    </div>
+    
+    <!-- Teaser: original Fig. 1 and Fig. 2 sources from TRO25__SDRS -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:30px; align-items:center;">
+      <img src="assets/img/tro/fig1_teaser.jpg" alt="Gripper shape optimization teaser" style="width:100%; height:260px; object-fit:contain; border-radius:8px; display:block;">
+      <img src="assets/img/fig2_co_design.jpg" alt="Differentiable robot co-design pipeline with annotations" style="width:100%; height:260px; object-fit:contain; border-radius:8px; display:block;">
+    </div>
+    
+    <!-- Main Video -->
+    <section id="video" style="margin-top:35px;">
+      <div style="max-width:720px; margin:0 auto; border-radius:10px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.12);">
+        <video controls autoplay muted loop preload="metadata" style="width:100%; display:block;" src="assets/video/main.mp4"></video>
+      </div>
+      <div style="text-align:center; margin-top:10px; color:var(--muted); font-size:13px;">SDRS overview: differentiable robot simulation with shape optimization</div>
+    </section>
+  </header>
+  
+  <main>
+    <section id="abstract" class="container">
+      <h2 class="section-title">Abstract</h2>
+      <p style="font-size:15px; line-height:1.7; color:#334155;">Robot simulators are indispensable tools across many fields, and recent research has significantly improved their functionality by incorporating additional gradient information. However, existing differentiable robot simulators suffer from non-differentiable singularities when robots undergo substantial shape changes. To address this, we present the Shape-Differentiable Robot Simulator (SDRS), designed to be differentiable under significant robot shape changes. The core innovation of SDRS lies in representing robot shapes using a set of convex polyhedrons. This representation allows smooth, penalty-based contact mechanics for interactions between any pair of convex polyhedrons. Using the separating hyperplane theorem, SDRS introduces a separating plane for each pair of contacting convex polyhedrons and treats it as a zero-mass auxiliary entity whose state is determined by the principle of least action. This setup enables global differentiability even as robot shapes undergo significant geometric and topological changes.</p>
+    </section>
+
+    <section id="results" class="container">
+      <h2 class="section-title">Results</h2>
+
+      <!-- Task 1: Spider Leg Shape Optimization -->
+      <h3 style="font-size:16px; margin:25px 0 15px;">Task 1: Spider Leg Shape Optimization</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:8px; align-items:center;">
+        <img src="assets/img/tro/spider_original.jpg" alt="Initial spider leg design" style="width:100%; height:auto; border-radius:8px; display:block;">
+        <img src="assets/img/tro/spider_shape_compare.jpg" alt="Optimized spider leg shapes comparison" style="width:100%; height:auto; border-radius:8px; display:block;">
+      </div>
+      <div style="font-size:12px; color:var(--muted); margin-bottom:25px; text-align:center;">Shape optimization of a spider-inspired robot leg. Left: Initial leg geometry. Right: Comparison of optimized shapes from SDRS (left) and mesh-based method (right).</div>
+
+      <!-- Task 2: Bipedal Robot Foot Optimization -->
+      <h3 style="font-size:16px; margin:25px 0 15px;">Task 2: Bipedal Robot Foot Optimization</h3>
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin-bottom:8px; align-items:center;">
+        <img src="assets/img/bipedal_0.jpg" alt="Bipedal robot walking render" style="width:100%; border-radius:8px; display:block;">
+        <img src="assets/img/tro/bipedal_original.jpg" alt="Original bipedal foot design" style="width:100%; border-radius:8px; display:block;">
+        <img src="assets/img/tro/bipedal_mesh_fine.jpg" alt="Foot optimized with fine mesh cage" style="width:100%; border-radius:8px; display:block;">
+        <img src="assets/img/tro/bipedal_ours.jpg" alt="Foot optimized with SDRS" style="width:100%; border-radius:8px; display:block;">
+      </div>
+      <div style="font-size:12px; color:var(--muted); margin-bottom:25px; text-align:center;">Comparative foot shape optimization for bipedal locomotion. From left to right: Robot walking visualization, original foot shape, fine mesh cage result, and SDRS optimization result.</div>
+
+      <!-- Task 3: Single-Jaw Gripper Topology Optimization -->
+      <h3 style="font-size:16px; margin:25px 0 15px;">Task 3: Single-Jaw Gripper Topology Optimization</h3>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-bottom:8px; align-items:center;">
+        <img src="assets/img/gripper_0.jpg" alt="Single-jaw gripper initial design" style="width:100%; border-radius:8px; display:block;">
+        <img src="assets/img/tro/single_gripper_ours_scene.jpg" alt="SDRS gripper simulation scene" style="width:100%; border-radius:8px; display:block;">
+        <img src="assets/img/tro/single_gripper_mesh_scene.jpg" alt="Mesh-based gripper simulation scene" style="width:100%; border-radius:8px; display:block;">
+      </div>
+      <div style="font-size:12px; color:var(--muted); margin-bottom:25px; text-align:center;">Single-jaw gripper topology optimization. Left: Initial gripper design. Middle: SDRS simulation enabling topology changes. Right: Mesh-based simulation with fixed topology.</div>
+    </section>
+
+    <section id="citation" class="container">
+      <h2 class="section-title">Citation</h2>
+      <pre style="font-size:12px;"><code>@article{ye2025sdrs,
+  title={SDRS: Shape-Differentiable Robot Simulator},
+  author={Ye, Xiaohan and Gao, Xifeng and Wu, Kui and Pan, Zherong and Komura, Taku},
+  journal={IEEE Transactions on Robotics},
+  year={2025}
+}</code></pre>
+    </section>
+  </main>
+  <footer class="container">Built as a project page for SDRS. Return to <a href="../">Xiaohan Ye's homepage</a>.</footer>
+</body>
+</html>
